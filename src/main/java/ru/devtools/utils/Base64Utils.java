@@ -18,4 +18,8 @@ public class Base64Utils {
   public static byte[] base64ToBytes(String data) {
     return Base64.getDecoder().decode(data);
   }
+
+  public static String encodeBase64(String data) {
+    return Base64.getEncoder().encodeToString(data.getBytes(StandardCharsets.UTF_8));
+  }
 }

@@ -18,6 +18,11 @@ import ru.devtools.utils.JwtUtils;
 @RequestMapping("/utils")
 public class UtilsController {
 
+  @PostMapping(value = "/string-base64", consumes = TEXT_PLAIN_VALUE, produces = TEXT_PLAIN_VALUE)
+  public String stringToBase64(@RequestBody String data) {
+    return Base64Utils.encodeBase64(data);
+  }
+
   @PostMapping(value = "/base64-string", consumes = TEXT_PLAIN_VALUE, produces = TEXT_PLAIN_VALUE)
   public String base64toString(@RequestBody String data) {
     return Base64Utils.decodeBase64(data);
