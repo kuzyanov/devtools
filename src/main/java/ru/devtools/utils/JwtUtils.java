@@ -6,6 +6,18 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class JwtUtils {
 
+  public static String decodeJwtHeader(String jwt) {
+    String[] split = jwt.split("\\.");
+
+    if (split.length != 3) {
+      throw new IllegalArgumentException("Invalid jwt token");
+    }
+
+    String header = split[0];
+
+    return Base64Utils.decodeBase64(header);
+  }
+
   public static String decodeJwtPayload(String jwt) {
     String[] split = jwt.split("\\.");
 

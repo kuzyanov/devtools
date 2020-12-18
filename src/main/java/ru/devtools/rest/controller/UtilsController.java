@@ -38,6 +38,11 @@ public class UtilsController {
     return Base64Utils.base64ToBytes(data);
   }
 
+  @PostMapping(value = "/jwt-decode-header", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_JSON_VALUE)
+  public String decodeJwtHeader(@RequestBody String token) {
+    return JwtUtils.decodeJwtHeader(token);
+  }
+
   @PostMapping(value = "/jwt-decode", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_JSON_VALUE)
   public String decodeJwtPayload(@RequestBody String token) {
     return JwtUtils.decodeJwtPayload(token);
@@ -51,5 +56,10 @@ public class UtilsController {
   @PostMapping(value = "/html4-unescape-xml", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_XML_VALUE)
   public String unescapeHtml4XmlString(@RequestBody String str) {
     return StringEscapeUtils.unescapeHtml4(str);
+  }
+
+  @PostMapping(value = "/unescape-xml", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_XML_VALUE)
+  public String unescapeXmlString(@RequestBody String str) {
+    return StringEscapeUtils.unescapeXml(str);
   }
 }
