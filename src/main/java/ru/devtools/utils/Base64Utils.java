@@ -4,9 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author Stepan_Kuzyanov
- */
+/** @author Stepan_Kuzyanov */
 @UtilityClass
 public class Base64Utils {
 
@@ -20,6 +18,10 @@ public class Base64Utils {
   }
 
   public static String encodeBase64(String data) {
-    return Base64.getEncoder().encodeToString(data.getBytes(StandardCharsets.UTF_8));
+    return encodeBase64(data.getBytes(StandardCharsets.UTF_8));
+  }
+
+  public static String encodeBase64(byte[] data) {
+    return Base64.getEncoder().encodeToString(data);
   }
 }
