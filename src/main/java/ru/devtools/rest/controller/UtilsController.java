@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import ru.devtools.dto.CronSequenceRequestDto;
+import ru.devtools.dto.JwtDto;
 import ru.devtools.dto.SingleResponseDto;
 import ru.devtools.utils.Base64Utils;
 import ru.devtools.utils.CronUtils;
@@ -60,6 +61,11 @@ public class UtilsController {
   @PostMapping(value = "/jwt-decode", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_JSON_VALUE)
   public String decodeJwtPayload(@RequestBody String token) {
     return JwtUtils.decodeJwtPayload(token);
+  }
+
+  @PostMapping(value = "/jwt-url-decode", consumes = TEXT_PLAIN_VALUE, produces = APPLICATION_JSON_VALUE)
+  public JwtDto decodeJwtUrl(@RequestBody String token) throws Exception {
+    return JwtUtils.decodeJwtUrl(token);
   }
 
   @PostMapping(value = "/html4-unescape", consumes = TEXT_PLAIN_VALUE, produces = TEXT_PLAIN_VALUE)

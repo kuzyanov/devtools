@@ -8,6 +8,11 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public class Base64Utils {
 
+  public static String decodeBase64Url(String data) {
+    byte[] decoded = Base64.getUrlDecoder().decode(data);
+    return new String(decoded, StandardCharsets.UTF_8);
+  }
+
   public static String decodeBase64(String data) {
     byte[] decoded = base64ToBytes(data);
     return new String(decoded, StandardCharsets.UTF_8);
