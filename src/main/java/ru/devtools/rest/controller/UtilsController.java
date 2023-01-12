@@ -7,8 +7,10 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 
 import java.io.IOException;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.text.StringEscapeUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +23,11 @@ import ru.devtools.dto.SingleResponseDto;
 import ru.devtools.utils.Base64Utils;
 import ru.devtools.utils.CronUtils;
 import ru.devtools.utils.JwtUtils;
+import ru.devtools.utils.UUIDUtils;
 
-/** @author Stepan_Kuzyanov */
+/**
+ * @author Stepan_Kuzyanov
+ */
 @RestController
 @RequestMapping("/utils")
 @RequiredArgsConstructor
@@ -91,5 +96,15 @@ public class UtilsController {
   @PostMapping(value = "/cron-sequence", consumes = APPLICATION_JSON_VALUE, produces = TEXT_PLAIN_VALUE)
   public String cronSequence(@RequestBody CronSequenceRequestDto request) {
     return CronUtils.cronSequenceString(request.getCron(), request.getTimeZone(), request.getCount());
+  }
+
+  @GetMapping(value = "/uuid/random")
+  public UUID uuidRandom() {
+    return UUID.randomUUID();
+  }
+
+  @PostMapping(value = "/uuid/from-not-dashed-string", consumes = TEXT_PLAIN_VALUE)
+  public UUID uuidFromNotDashedString(@RequestBody String str) {
+    return UUIDUtils.fromNotDashedString(str);
   }
 }
