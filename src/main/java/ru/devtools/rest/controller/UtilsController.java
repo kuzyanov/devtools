@@ -1,5 +1,6 @@
 package ru.devtools.rest.controller;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_OCTET_STREAM_VALUE;
 import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
@@ -7,6 +8,7 @@ import static org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE;
 import static org.springframework.http.MediaType.TEXT_PLAIN_VALUE;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.text.StringEscapeUtils;
@@ -106,5 +108,10 @@ public class UtilsController {
   @PostMapping(value = "/uuid/from-not-dashed-string", consumes = TEXT_PLAIN_VALUE)
   public UUID uuidFromNotDashedString(@RequestBody String str) {
     return UUIDUtils.fromNotDashedString(str);
+  }
+
+  @PostMapping(value = "/url/decode", consumes = TEXT_PLAIN_VALUE)
+  public String urlDecode(@RequestBody String str) {
+    return URLDecoder.decode(str, UTF_8);
   }
 }
