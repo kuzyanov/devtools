@@ -17,7 +17,7 @@
   <properties>
     <java.version>11</java.version>
 
-    <commons-text.version>1.8</commons-text.version>
+    <commons-text.version>1.10.0</commons-text.version>
     <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
   </properties>
 
